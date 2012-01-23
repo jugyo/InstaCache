@@ -1,19 +1,10 @@
-<html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= @text[:title] %></title>
-</head>
-<body>
-    <div data-role="page">
-        <div data-role="header">
-            <a data-rel="back" data-role="button" data-icon="back">Back</a>
-            <h1><%= @text[:title] %></h1>
-            <a href="<%= @url %>" target="_blank" data-role="button" data-icon="forward">Original</a>
-        </div>
-        <div data-role="content">
-            <%== @text[:text] %>
-        </div>
+<div data-role="page">
+    <div data-role="header">
+        <a data-rel="back" data-role="button" data-icon="back">Back</a>
+        <h1><%= @text[:title] %></h1>
+        <a href="<%= @url %>" target="_blank" data-role="button" data-icon="forward">Original</a>
     </div>
-</body>
-</html>
+    <div data-role="content">
+        <%== @text[:text] %>
+    </div>
+</div>
