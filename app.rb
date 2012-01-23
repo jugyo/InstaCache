@@ -31,3 +31,8 @@ get '/t' do
   @text = text(@url)
   erubis :text
 end
+
+get '/u' do
+  @bookmarks = INSTAPAPER.unread
+  erubis :bookmarks
+end

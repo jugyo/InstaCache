@@ -12,16 +12,29 @@
         $(function(){
             $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
 
-            $("a.bookmark").each(function() {
-                var that = $(this);
-                var url = that.attr('href');
-                console.log("loadPage: " + url);
-                $.mobile.loadPage(url).then(function() {
-                    console.log(url);
-                    that.removeClass("unloaded");
-                    that.addClass("loaded");
+            $.prefetch = function() {
+                $("a.bookmark").each(function() {
+                    var that = $(this);
+                    var url = that.attr('href');
+                    console.log("loadPage: " + url);
+                    $.mobile.loadPage(url).done(function() {
+                        console.log(url);
+                        that.removeClass("unloaded");
+                        that.addClass("loaded");
+                    });
                 });
-            });
+            }
+
+            $.refreshList = function() {
+                $.mobile.showPageLoadingMsg();
+                $("#bookmarks").load('/u', function() {
+                    $("#bookmarks").listview('refresh');
+                    $.mobile.hidePageLoadingMsg();
+                    $.prefetch();
+                });
+            }
+
+            $.refreshList();
         });
     </script>
     <style type="text/css" media="screen">
@@ -40,19 +53,10 @@
     <div data-role="page" class="type-interior">
         <div data-role="header">
             <h1>Read Later</h1>
-            <a href="javascript: window.location.reload();" data-role="button" data-icon="refresh" class="ui-btn-right">Refresh</a>
+            <a href="javascript: $.refreshList();" data-role="button" data-icon="refresh" class="ui-btn-right">Refresh</a>
         </div>
         <div data-role="content">
-            <ul data-role="listview">
-                <% @bookmarks.each do |bookmark| %>
-                    <li>
-                        <a href="/t?url=<%= URI.escape(bookmark[:url]) %>" class="bookmark unloaded" data-transition="none">
-                            <span class="loading"></span>
-                            <%= bookmark[:title] %>
-                        </a>
-                    </li>
-                <% end %>
-            </ul>
+            <ul data-role="listview" id="bookmarks"></ul>
         </div>
     </div>
 </body>
