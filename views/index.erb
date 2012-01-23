@@ -9,20 +9,20 @@
     <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
     <script type="text/javascript" charset="utf-8">
-      $(function() {
-        $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
+        $(function(){
+            $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
 
-        $("a.bookmark").each(function() {
-            var that = $(this);
-            var url = that.attr('href');
-            console.log("loadPage: " + url);
-            $.mobile.loadPage(url).then(function() {
-                console.log(url);
-                that.removeClass("unloaded");
-                that.addClass("loaded");
+            $("a.bookmark").each(function() {
+                var that = $(this);
+                var url = that.attr('href');
+                console.log("loadPage: " + url);
+                $.mobile.loadPage(url).then(function() {
+                    console.log(url);
+                    that.removeClass("unloaded");
+                    that.addClass("loaded");
+                });
             });
         });
-      });
     </script>
     <style type="text/css" media="screen">
         pre {
