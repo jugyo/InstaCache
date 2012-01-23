@@ -8,7 +8,7 @@ require 'active_support/cache'
 set :erubis, :escape_html => true
 
 INSTAPAPER = Instapi.new(ENV['INSTAPAPER_USERNAME'], ENV['INSTAPAPER_PASSWORD'])
-CACHE = ActiveSupport::Cache.lookup_store(:mem_cache_store)
+CACHE = ActiveSupport::Cache.lookup_store(:dalli_store)
 
 def text(url)
   if result = CACHE.read(url)
