@@ -19,6 +19,12 @@ def text(url)
     CACHE.write(url, result)
     result
   end
+rescue => e
+  {:title => 'error', :text => 'error'}
+end
+
+error do
+  "System Error :("
 end
 
 get '/' do
