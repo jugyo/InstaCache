@@ -28,7 +28,6 @@ error do
 end
 
 get '/' do
-  @bookmarks = INSTAPAPER.unread
   erubis :index
 end
 
