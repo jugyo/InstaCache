@@ -59,7 +59,13 @@
             <a href="javascript: $.refreshList();" data-role="button" data-icon="refresh" class="ui-btn-right">Refresh</a>
         </div>
         <div data-role="content">
-            <ul data-role="listview" id="bookmarks"></ul>
+            <ul data-role="listview" id="bookmarks">
+                <% 40.times do |i| %>
+                    <li>
+                        <a href="#" data-icon="delete">&nbsp;</a>
+                    </li>
+                <% end %>
+            </ul>
         </div>
     </div>
 </body>
