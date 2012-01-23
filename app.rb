@@ -17,6 +17,7 @@ def text(url)
   else
     result = INSTAPAPER.text(URI.encode(url))
     CACHE.write(url, result)
+    result = Instapi.text(URI.encode(url))
     result
   end
 rescue => e
