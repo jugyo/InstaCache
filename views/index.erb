@@ -16,9 +16,9 @@
                 $("a.bookmark").each(function() {
                     var that = $(this);
                     var url = that.attr('href');
-                    console.log("loadPage: " + url);
+                    // console.log("loadPage: " + url);
                     $.mobile.loadPage(url).done(function() {
-                        console.log(url);
+                        // console.log(url);
                         that.removeClass("unloaded");
                         that.addClass("loaded");
                     });
