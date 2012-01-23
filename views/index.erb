@@ -43,7 +43,7 @@
             <ul data-role="listview">
                 <% @bookmarks.each do |bookmark| %>
                     <li>
-                        <a href="/t?url=<%= URI.escape(bookmark[:url]) %>" class="bookmark unloaded">
+                        <a href="/t?url=<%= URI.escape(bookmark[:url]) %>" class="bookmark unloaded" data-transition="none">
                             <span class="loading"></span>
                             <%= bookmark[:title] %>
                         </a>
