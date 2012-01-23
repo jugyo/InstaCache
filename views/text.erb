@@ -1,0 +1,17 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title><%= @text[:title] %></title>
+</head>
+<body>
+    <div data-role="page">
+        <div data-role="content">
+            <%== @text[:text] %>
+        </div>
+        <div data-role="footer" class="ui-bar" data-position="fixed">
+            <a data-rel="back" data-role="button" data-icon="back">Back</a>
+            <a href="<%= @url %>" target="_blank" data-role="button" data-icon="forward" class="ui-btn-right">Original</a>
+        </div>
+    </div>
+</body>
+</html>
