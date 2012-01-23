@@ -9,19 +9,18 @@ set :erubis, :escape_html => true
 
 INSTAPAPER = Instapi.new(ENV['INSTAPAPER_USERNAME'], ENV['INSTAPAPER_PASSWORD'])
 CACHE = ActiveSupport::Cache.lookup_store(:dalli_store)
+CACHE_EXPIRES_IN = ENV['CACHE_EXPIRES_IN'].to_i rescue 10
 
 def text(url)
   if result = CACHE.read(url)
-    puts "use cache for: #{url}"
+    puts "read cache for: #{url}"
     result
   else
-    result = INSTAPAPER.text(URI.encode(url))
-    CACHE.write(url, result)
+    puts "write cache for: #{url}"
     result = Instapi.text(URI.encode(url))
+    CACHE.write(url, result, :expires_in => CACHE_EXPIRES_IN)
     result
   end
-rescue => e
-  {:title => 'error', :text => 'error'}
 end
 
 error do
