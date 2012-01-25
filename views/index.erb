@@ -13,14 +13,12 @@
             $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
 
             $.archiveBookmark = function(id) {
+                $.mobile.changePage("/", {transition: 'none'});
+                $("#bookmark-" + id).fadeOut();
                 $.ajax({
                     url: '/archive',
                     type: 'post',
-                    data: {id: id},
-                    success: function() {
-                        $.mobile.changePage("/", {transition: 'none'});
-                        $("#bookmark-" + id).fadeOut();
-                    }
+                    data: {id: id}
                 });
             }
 
