@@ -4,6 +4,7 @@ GEM
     activesupport (3.1.0)
       multi_json (~> 1.0)
     dalli (1.1.4)
+    encrypted_cookie (0.0.4)
     erubis (2.7.0)
     g (1.4.0)
       ruby-growl (>= 1.0.1)
@@ -12,6 +13,7 @@ GEM
     instapi (1.3.1)
       httpclient
       nokogiri
+    ir_b (1.2.0)
     multi_json (1.0.3)
     nokogiri (1.5.0)
     rack (1.3.2)
@@ -27,8 +29,10 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   dalli
+  encrypted_cookie
   erubis
   g
   i18n
   instapi
+  ir_b
   sinatra

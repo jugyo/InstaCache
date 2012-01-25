@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>InstaCache</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+</head>
+<body>
+    <div data-role="page" class="type-interior">
+        <div data-role="header">
+            <h1>InstaCache</h1>
+        </div>
+        <div data-role="content">
+            <form action="/login" method="post" data-ajax="false">
+                <label for="username" class="ui-hidden-accessible">Username:</label>
+                <input type="text" name="username" id="username" value="" placeholder="Username" />
+                <label for="password" class="ui-hidden-accessible">Password:</label>
+                <input type="password" name="password" id="password" value="" placeholder="Password" />
+                <input type="submit" value="Login" data-theme="b" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

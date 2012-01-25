@@ -5,9 +5,9 @@ Bundler.require
 require 'uri'
 require 'active_support/cache'
 
+use Rack::Session::EncryptedCookie, :secret => "\x84rN\x95b\x13\x85\x9D\x02r\xCF9F\x93$\x16"
 set :erubis, :escape_html => true
 
-INSTAPAPER = Instapi.new(ENV['INSTAPAPER_USERNAME'], ENV['INSTAPAPER_PASSWORD'])
 CACHE = ActiveSupport::Cache.lookup_store(:dalli_store)
 CACHE_EXPIRES_IN = ENV['CACHE_EXPIRES_IN'].to_i rescue 10
 
@@ -23,12 +23,39 @@ def text(url)
   end
 end
 
+helpers do
+  def instapaper
+    if session.key?(:username) && session.key?(:password)
+      Instapi.new(session[:username], session[:password])
+    end
+  end
+
+  def logged_in?
+    !!instapaper
+  end
+end
+
 error do
   "System Error :("
 end
 
 get '/' do
   erubis :index
+end
+
+get '/login' do
+  erubis :login
+end
+
+post '/login' do
+  session[:username] = params[:username]
+  session[:password] = params[:password]
+  redirect '/'
+end
+
+get '/logout' do
+  session.clear
+  redirect '/login'
 end
 
 get '/t' do
@@ -38,6 +65,6 @@ get '/t' do
 end
 
 get '/u' do
-  @bookmarks = INSTAPAPER.unread
+  @bookmarks = instapaper.unread
   erubis :bookmarks
 end
