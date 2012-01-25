@@ -12,6 +12,18 @@
         $(function(){
             $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
 
+            $.archiveBookmark = function(id) {
+                $.ajax({
+                    url: '/archive',
+                    type: 'post',
+                    data: {id: id},
+                    success: function() {
+                        $.mobile.changePage("/", {transition: 'none'});
+                        $("#bookmark-" + id).fadeOut();
+                    }
+                });
+            }
+
             $.prefetch = function() {
                 $("a.bookmark").each(function() {
                     var that = $(this);

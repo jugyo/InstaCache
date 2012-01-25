@@ -63,6 +63,7 @@ get '/logout' do
 end
 
 get '/t' do
+  @id = params[:id]
   @url = params[:url]
   @text = text(@url)
   erubis :text
@@ -71,4 +72,8 @@ end
 get '/u' do
   @bookmarks = instapaper.unread
   erubis :bookmarks
+end
+
+post '/archive' do
+  instapaper.archive(params[:id])
 end

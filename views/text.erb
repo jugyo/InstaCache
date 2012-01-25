@@ -2,6 +2,9 @@
     <div data-role="header">
         <a data-rel="back" data-role="button" data-icon="back">Back</a>
         <h1><%= @text[:title] %></h1>
+    </div>
+    <div class="ui-bar" style="text-align: right;">
+        <a href="javascript: $.archiveBookmark(<%= @id %>)" data-role="button" data-icon="check">Archive</a>
         <a href="<%= @url %>" target="_blank" data-role="button" data-icon="forward">Original</a>
     </div>
     <div data-role="content" class="bookmark-content">

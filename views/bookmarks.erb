@@ -1,6 +1,6 @@
 <% @bookmarks.each do |bookmark| %>
-    <li>
-        <a href="/t?url=<%= URI.escape(bookmark[:url]) %>" class="bookmark unloaded" data-transition="none">
+    <li id="bookmark-<%= bookmark[:id] %>">
+        <a href="/t?url=<%= URI.escape(bookmark[:url]) %>&id=<%= bookmark[:id] %>" class="bookmark unloaded" data-transition="none">
             <span class="loading"></span>
             <%= bookmark[:title] %>
         </a>
