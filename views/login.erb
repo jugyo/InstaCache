@@ -18,11 +18,17 @@
             <% if flash[:notice] %>
                 <p style="color: #EC4220"><%= flash[:notice] %></p>
             <% end %>
+            <p style="margin-bottom: 40px; color: #333">
+                <strong>InstaCache</strong> is a offline tool for the <a href="http://instapaper.com" target="_blank">Instapaper</a>.
+            </p>
             <form action="/login" method="post" data-ajax="false">
                 <label for="username" class="ui-hidden-accessible">Username:</label>
                 <input type="text" name="username" id="username" value="" placeholder="Username" />
                 <label for="password" class="ui-hidden-accessible">Password:</label>
                 <input type="password" name="password" id="password" value="" placeholder="Password" />
+                <p style="font-size: 90%; color: #666">
+                    Username and Password are encrypted and saved to the cookie.
+                </p>
                 <button type="submit" data-theme="b" name="submit" value="submit">Login</button>
             </form>
         </div>
