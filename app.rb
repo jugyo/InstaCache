@@ -40,7 +40,11 @@ error do
 end
 
 get '/' do
-  erubis :index
+  if logged_in?
+    erubis :index
+  else
+    redirect '/login'
+  end
 end
 
 get '/login' do
