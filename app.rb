@@ -54,7 +54,13 @@ end
 post '/login' do
   session[:username] = params[:username]
   session[:password] = params[:password]
-  redirect '/'
+  begin
+    instapaper.login!
+    redirect '/'
+  rescue Instapi::LoginError => e
+    flash[:notice] = "Login error!"
+    redirect '/login'
+  end
 end
 
 get '/logout' do

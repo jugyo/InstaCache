@@ -9,3 +9,4 @@ gem 'i18n'
 gem 'activesupport', :require => false
 gem 'erubis'
 gem 'encrypted_cookie'
+gem 'sinatra-flash', :require => 'sinatra/flash'
