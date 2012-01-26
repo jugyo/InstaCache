@@ -12,40 +12,6 @@
 
 <script type="text/javascript" charset="utf-8">
     $(function(){
-        $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
-
-        $.archiveBookmark = function(id) {
-            $.mobile.changePage("/", {transition: 'none'});
-            $("#bookmark-" + id).fadeOut();
-            $.ajax({
-                url: '/archive',
-                type: 'post',
-                data: {id: id}
-            });
-        }
-
-        $.prefetch = function() {
-            $("a.bookmark").each(function() {
-                var that = $(this);
-                var url = that.attr('href');
-                // console.log("loadPage: " + url);
-                $.mobile.loadPage(url).done(function() {
-                    // console.log(url);
-                    that.removeClass("unloaded");
-                    that.addClass("loaded");
-                });
-            });
-        }
-
-        $.refreshList = function() {
-            $.mobile.showPageLoadingMsg();
-            $("#bookmarks").load('/u', function() {
-                $("#bookmarks").listview('refresh');
-                $.mobile.hidePageLoadingMsg();
-                $.prefetch();
-            });
-        }
-
         setTimeout($.refreshList, 500);
     });
 </script>
