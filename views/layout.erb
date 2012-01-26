@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>InstaCache</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+    <style type="text/css" media="screen">
+        img {
+            max-width: 100%;
+        }
+        pre {
+            word-wrap: break-word;
+        }
+        a.unloaded {
+            opacity: 0.4;
+        }
+        a.loaded .loading {
+            display: none;
+        }
+        .bookmark-content h1 {
+            font-size: 140%;
+        }
+    </style>
+</head>
+<body>
+    <%== yield %>
+</body>
+</html>

@@ -1,86 +1,56 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>InstaCache</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
-    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        $(function(){
-            $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
-
-            $.archiveBookmark = function(id) {
-                $.mobile.changePage("/", {transition: 'none'});
-                $("#bookmark-" + id).fadeOut();
-                $.ajax({
-                    url: '/archive',
-                    type: 'post',
-                    data: {id: id}
-                });
-            }
-
-            $.prefetch = function() {
-                $("a.bookmark").each(function() {
-                    var that = $(this);
-                    var url = that.attr('href');
-                    // console.log("loadPage: " + url);
-                    $.mobile.loadPage(url).done(function() {
-                        // console.log(url);
-                        that.removeClass("unloaded");
-                        that.addClass("loaded");
-                    });
-                });
-            }
-
-            $.refreshList = function() {
-                $.mobile.showPageLoadingMsg();
-                $("#bookmarks").load('/u', function() {
-                    $("#bookmarks").listview('refresh');
-                    $.mobile.hidePageLoadingMsg();
-                    $.prefetch();
-                });
-            }
-
-            setTimeout($.refreshList, 500);
-        });
-    </script>
-    <style type="text/css" media="screen">
-        img {
-            max-width: 100%;
-        }
-        pre {
-            word-wrap: break-word;
-        }
-        a.unloaded {
-            opacity: 0.4;
-        }
-        a.loaded .loading {
-            display: none;
-        }
-        .bookmark-content h1 {
-            font-size: 140%;
-        }
-    </style>
-</head>
-<body>
-    <div data-role="page" class="type-interior">
-        <div data-role="header">
-            <h1>InstaCache</h1>
-            <a href="javascript: $.refreshList();" data-role="button" data-icon="refresh" class="ui-btn-right">Refresh</a>
-        </div>
-        <div data-role="content">
-            <ul data-role="listview" id="bookmarks">
-                <% 40.times do |i| %>
-                    <li>
-                        <a href="#">&nbsp;</a>
-                    </li>
-                <% end %>
-            </ul>
-        </div>
-        <%== erubis :footer, :layout => false %>
+<div data-role="page" class="type-interior">
+    <div data-role="header">
+        <h1>InstaCache</h1>
+        <a href="javascript: $.refreshList();" data-role="button" data-icon="refresh" class="ui-btn-right">Refresh</a>
     </div>
-</body>
-</html>
+    <div data-role="content">
+        <ul data-role="listview" id="bookmarks">
+            <% 40.times do |i| %>
+                <li>
+                    <a href="#">&nbsp;</a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+    <%== erubis :footer, :layout => false %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+        $.mobile.page.prototype.options.domCache = true; // 一覧に戻った時に prefetch しないようにしている
+
+        $.archiveBookmark = function(id) {
+            $.mobile.changePage("/", {transition: 'none'});
+            $("#bookmark-" + id).fadeOut();
+            $.ajax({
+                url: '/archive',
+                type: 'post',
+                data: {id: id}
+            });
+        }
+
+        $.prefetch = function() {
+            $("a.bookmark").each(function() {
+                var that = $(this);
+                var url = that.attr('href');
+                // console.log("loadPage: " + url);
+                $.mobile.loadPage(url).done(function() {
+                    // console.log(url);
+                    that.removeClass("unloaded");
+                    that.addClass("loaded");
+                });
+            });
+        }
+
+        $.refreshList = function() {
+            $.mobile.showPageLoadingMsg();
+            $("#bookmarks").load('/u', function() {
+                $("#bookmarks").listview('refresh');
+                $.mobile.hidePageLoadingMsg();
+                $.prefetch();
+            });
+        }
+
+        setTimeout($.refreshList, 500);
+    });
+</script>

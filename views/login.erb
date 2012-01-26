@@ -1,38 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>InstaCache</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
-    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-</head>
-<body>
-    <div data-role="page" class="type-interior">
-        <div data-role="header">
-            <h1>InstaCache</h1>
-        </div>
-        <div data-role="content">
-            <p style="margin-bottom: 40px; color: #333">
-                <strong>InstaCache</strong> is a offline tool for the <a href="http://instapaper.com" target="_blank">Instapaper</a>.
-            </p>
-            <% if flash[:notice] %>
-                <p style="color: #EC4220"><%= flash[:notice] %></p>
-            <% end %>
-            <form action="/login" method="post" data-ajax="false">
-                <label for="username" class="ui-hidden-accessible">Username:</label>
-                <input type="text" name="username" id="username" value="" placeholder="Username" />
-                <label for="password" class="ui-hidden-accessible">Password:</label>
-                <input type="password" name="password" id="password" value="" placeholder="Password" />
-                <p style="font-size: 90%; color: #666">
-                    Username and Password are encrypted and saved to the cookie.
-                </p>
-                <button type="submit" data-theme="b" name="submit" value="submit">Login</button>
-            </form>
-        </div>
-        <%== erubis :footer, :layout => false %>
+<div data-role="page" class="type-interior">
+    <div data-role="header">
+        <h1>InstaCache</h1>
     </div>
-</body>
-</html>
+    <div data-role="content">
+        <p style="margin-bottom: 40px; color: #333">
+            <strong>InstaCache</strong> is a offline tool for the <a href="http://instapaper.com" target="_blank">Instapaper</a>.
+        </p>
+        <% if flash[:notice] %>
+            <p style="color: #EC4220"><%= flash[:notice] %></p>
+        <% end %>
+        <form action="/login" method="post" data-ajax="false">
+            <label for="username" class="ui-hidden-accessible">Username:</label>
+            <input type="text" name="username" id="username" value="" placeholder="Username" />
+            <label for="password" class="ui-hidden-accessible">Password:</label>
+            <input type="password" name="password" id="password" value="" placeholder="Password" />
+            <p style="font-size: 90%; color: #666">
+                Username and Password are encrypted and saved to the cookie.
+            </p>
+            <button type="submit" data-theme="b" name="submit" value="submit">Login</button>
+        </form>
+    </div>
+    <%== erubis :footer, :layout => false %>
+</div>

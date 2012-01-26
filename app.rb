@@ -75,7 +75,7 @@ end
 
 get '/u' do
   @bookmarks = instapaper.login!.unread
-  erubis :bookmarks
+  erubis :bookmarks, :layout => false
 end
 
 post '/archive' do
