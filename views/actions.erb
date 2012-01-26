@@ -1,5 +1,5 @@
 <div class="ui-bar" style="text-align: right;">
     <a href="javascript: $.archiveBookmark(<%= @id %>)" data-role="button" data-icon="check">Archive</a>
     <a href="https://twitter.com/intent/tweet?text=<%= @text[:title] %> (via InstaCache)&url=<%= @url %>" target="_blank" data-role="button" data-icon="forward">Tweet</a>
-    <a href="<%= @url %>" target="_blank" data-role="button" data-icon="forward">Original</a>
+    <a href="<%= @url %>" title="<%= @text[:title] %>" target="_blank" data-role="button" data-icon="forward">Original</a>
 </div>
