@@ -15,14 +15,11 @@
             <a data-rel="back" data-role="button" data-icon="back">Back</a>
             <h1><%= @text[:title] %></h1>
         </div>
-        <div class="ui-bar" style="text-align: right;">
-            <a href="javascript: $.archiveBookmark(<%= @id %>)" data-role="button" data-icon="check">Archive</a>
-            <a href="http://twitter.com/?status=<%= @text[:title] %> <%= @url %>" target="_blank" data-role="button" data-icon="forward">Tweet</a>
-            <a href="<%= @url %>" target="_blank" data-role="button" data-icon="forward">Original</a>
-        </div>
+        <%== erubis :actions, :layout => false %>
         <div data-role="content" class="bookmark-content" style="border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; ">
             <%== @text[:text] %>
         </div>
+        <%== erubis :actions, :layout => false %>
         <%== erubis :footer, :layout => false %>
     </div>
 </body>
