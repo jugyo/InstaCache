@@ -66,6 +66,13 @@
                 event.stopPropagation();
                 window.open(this.href, '_blank');
             });
+
+            // for Android
+            $('a[target="_blank"]').live('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                window.open(this.href, '_blank');
+            });
         });
     </script>
 </head>
