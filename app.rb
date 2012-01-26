@@ -7,7 +7,6 @@ require 'active_support/cache'
 
 use Rack::Session::EncryptedCookie, :secret => "\x84rN\x95b\x13\x85\x9D\x02r\xCF9F\x93$\x16"
 set :erubis, :escape_html => true
-set :raise_errors, Proc.new { false }
 set :show_exceptions, false
 
 CACHE = ActiveSupport::Cache.lookup_store(:dalli_store)
