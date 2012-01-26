@@ -10,7 +10,7 @@ GEM
       ruby-growl (>= 1.0.1)
     httpclient (2.2.4)
     i18n (0.6.0)
-    instapi (1.4.0)
+    instapi (1.4.1)
       httpclient
       nokogiri
     ir_b (1.2.0)

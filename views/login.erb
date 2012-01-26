@@ -15,12 +15,12 @@
             <h1>InstaCache</h1>
         </div>
         <div data-role="content">
-            <% if flash[:notice] %>
-                <p style="color: #EC4220"><%= flash[:notice] %></p>
-            <% end %>
             <p style="margin-bottom: 40px; color: #333">
                 <strong>InstaCache</strong> is a offline tool for the <a href="http://instapaper.com" target="_blank">Instapaper</a>.
             </p>
+            <% if flash[:notice] %>
+                <p style="color: #EC4220"><%= flash[:notice] %></p>
+            <% end %>
             <form action="/login" method="post" data-ajax="false">
                 <label for="username" class="ui-hidden-accessible">Username:</label>
                 <input type="text" name="username" id="username" value="" placeholder="Username" />

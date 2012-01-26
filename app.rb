@@ -7,6 +7,8 @@ require 'active_support/cache'
 
 use Rack::Session::EncryptedCookie, :secret => "\x84rN\x95b\x13\x85\x9D\x02r\xCF9F\x93$\x16"
 set :erubis, :escape_html => true
+set :raise_errors, Proc.new { false }
+set :show_exceptions, false
 
 CACHE = ActiveSupport::Cache.lookup_store(:dalli_store)
 CACHE_EXPIRES_IN = ENV['CACHE_EXPIRES_IN'].to_i rescue 10
@@ -35,8 +37,10 @@ helpers do
   end
 end
 
-error do
-  "System Error :("
+error Instapi::LoginError do
+  session.clear
+  flash[:notice] = "Invalid username or password :("
+  redirect '/login'
 end
 
 get '/' do
@@ -54,13 +58,8 @@ end
 post '/login' do
   session[:username] = params[:username]
   session[:password] = params[:password]
-  begin
-    instapaper.login!
-    redirect '/'
-  rescue Instapi::LoginError => e
-    flash[:notice] = "Login error!"
-    redirect '/login'
-  end
+  instapaper.login! # to verify user
+  redirect '/'
 end
 
 get '/logout' do
@@ -76,10 +75,10 @@ get '/t' do
 end
 
 get '/u' do
-  @bookmarks = instapaper.unread
+  @bookmarks = instapaper.login!.unread
   erubis :bookmarks
 end
 
 post '/archive' do
-  instapaper.archive(params[:id])
+  instapaper.login!.archive(params[:id])
 end
